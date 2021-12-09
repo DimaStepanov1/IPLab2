@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<textarea type="text" id="str1" style="width: 400px"></textarea><br>
+<button onclick="tablePeople()">Створити таблицю</button>
+<table id="table" border="0,4" width="100%">
+
+</table>
+
+<script>
+    function tablePeople() {
+        let str1 = document.getElementById('str1').value;
+        let firstName = /[A-Z][a-z]+/;
+        let lastName = /[A-Z][a-z]+\n/;
+        let gender = /Female|Male\n/;
+        let address = /\d+.+\n.+/;
+        let birthDate = /[0-9]{2}-[0-9]{2}-[0-9]{4}/;
+        let nickname = /^[a-z]+/m;
+        let password = /[A-Z].*[\!\@\*\^\$\+\(\)\_\=\&\#\%].*/;
+        let email = /[a-z0-9]+@[a-z0-9]+.[net|com|biz|org]+/;
+
+        var array = str1.split('\n\n');
+        document.getElementById("table").innerHTML+=
+            '<th id="FirstName">First Name</th><th id="SecondName">Second Name</th><th id="Gender">Gender</th><th id="Address">Address</th><th id="Date">Date</th><th id="Nickname">Nickname</th><th id="Password">Password</th><th id="Email">Email</th>';
+
+        for(let i = 0; i<array.length;i++){
+            document.getElementById("table").innerHTML+=
+                '<tr><td>'+array[i].match(firstName)+'</td><td>' + array[i].match(lastName) + '</td><td>' +array[i].match(gender)+'</td><td>'+
+                array[i].match(address) + '</td><td>'+ array[i].match(birthDate) + '</td><td>' + array[i].match(nickname)+ '</td><td>'+
+                array[i].match(password) +'</td><td>'+array[i].match(email)+'</td>'+'</tr>';
+        }
+    }
+</script>
+
+</body>
+</html>
